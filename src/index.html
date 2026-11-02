@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#006b98">
+  <meta name="description" content="Prototype offline Sistem Informasi Aktivitas PDKB-TM">
+  <title>SIAP PDKB-TM</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .report-page + .report-page { margin-top: 16px; }
+    .report-summary { min-height: auto; }
+    @media (max-width: 560px) {
+      .app-shell { width: 100vw; max-width: 100vw; min-width: 0; overflow: hidden; }
+      .topbar, .workspace { width: 100%; max-width: 100%; min-width: 0; }
+      .topbar { overflow: hidden; }
+      .top-actions, .role-control { min-width: 0; }
+      .role-control select { width: 112px; max-width: 112px; }
+      .page-head h1 { overflow-wrap: anywhere; }
+    }
+    @media print {
+      .report-page { break-after: page; }
+      .report-page:last-child { break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="ambient ambient-three"></div>
+  <div id="app" class="app-shell">
+    <header class="topbar glass">
+      <button class="brand" type="button" data-go="dashboard" aria-label="Ke dashboard"><span class="brand-logo">PLN</span><span><b>SIAP PDKB-TM</b><small>Sistem Informasi Aktivitas PDKB</small></span></button>
+      <div class="top-actions">
+        <span id="storage-badge" class="sync-badge"><i></i> Memuat data…</span>
+        <button class="icon-button" id="open-notifications" type="button" aria-label="Notifikasi"><span>!</span><b id="notification-count">0</b></button>
+        <label class="role-control"><span>Mode peran</span><select id="role-switcher" aria-label="Pilih peran demo"></select></label>
+        <div class="avatar" id="role-avatar">SPM</div>
+      </div>
+    </header>
+    <aside class="sidebar glass">
+      <nav id="main-nav" aria-label="Navigasi utama"></nav>
+      <div class="data-tools">
+        <p>DATABASE LOKAL</p>
+        <button id="import-button" class="nav-tool" type="button"><span>⇧</span> Impor Excel</button>
+        <button id="export-button" class="nav-tool" type="button"><span>⇩</span> Ekspor Database</button>
+        <input id="database-file" type="file" accept=".xlsx,.xlsm" hidden>
+      </div>
+      <div class="version-card"><span>PROTOTYPE OFFLINE</span><strong>Schema v1 · App 1.0.0</strong><small>Data tidak dikirim ke jaringan.</small></div>
+    </aside>
+    <main id="workspace" class="workspace" tabindex="-1"></main>
+    <nav id="mobile-nav" class="mobile-nav glass" aria-label="Navigasi seluler"></nav>
+  </div>
+  <dialog id="app-dialog" class="app-dialog glass"><form method="dialog"><button class="dialog-close" value="cancel" aria-label="Tutup">×</button></form><div id="dialog-content"></div></dialog>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <div id="loading-overlay" class="loading-overlay is-hidden"><div class="loader"></div><strong id="loading-label">Memproses…</strong></div>
+  <script src="app.js"></script>
+</body>
+</html>
